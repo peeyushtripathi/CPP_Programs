@@ -1,64 +1,12 @@
-#include<iostream>
+#include<TreeNode.h>
 
-using namespace std;
-
-class Node{
-	int data;
-	Node *left;
-	Node *right;
-	public:
-	Node()
-	{
-		data=0;
-		left=NULL;
-		right=NULL;
-	};
-	Node(int data)
-	{
-		this->data=data;
-		left=NULL;
-		right=NULL;
-	};
-
-	~Node()
-	{};
-
-	int getData()
-	{
-		return data;
-	};
-	void setData(int data)
-	{
-		this->data=data;
-	};
-
-	Node* getLeftPtr()
-	{
-		return this->left;
-	};
-
-	Node* getRightPtr()
-	{
-		return this->right;
-	};
-
-	void setLeftPtr(Node *element)
-	{
-		this->left = element;
-	};
-
-	void setRightPtr(Node *element)
-	{
-		this->right = element;
-	};
-};
 
 class Tree
 {
-	Node *root;
+	TreeNode *root;
 
 	public:
-	Node* getRoot()
+	TreeNode* getRoot()
 	{
 		return root;
 	};
@@ -76,7 +24,7 @@ class Tree
 		int data;
 		std::cout<<"enter number";
 		std::cin>>data;
-		Node *element =new Node(data);
+		TreeNode *element =new TreeNode(data);
 		if(root==NULL)
 		{
 			root=element;
@@ -86,9 +34,9 @@ class Tree
 			find_location_and_insert(element);
 		}
 	};
-	void  find_location_and_insert(Node *element)
+	void  find_location_and_insert(TreeNode *element)
 	{
-		Node *tmp_root=getRoot();
+		TreeNode *tmp_root=getRoot();
 		if(tmp_root->getData() == element->getData())
 		{
 			std::cout<<"element already exist";
@@ -112,7 +60,7 @@ class Tree
 			std::cout<<"shit \n";
 	};
 	
-	void move_left(Node *tmp_root, Node *element)
+	void move_left(TreeNode *tmp_root, TreeNode *element)
 	{
 
 		if(tmp_root->getData() == element->getData())
@@ -138,7 +86,7 @@ class Tree
 			std::cout<<"shit inside move left \n";
 	};
 
-	void move_right(Node *tmp_root, Node *element)
+	void move_right(TreeNode *tmp_root, TreeNode *element)
 	{
 
 		if(tmp_root->getData() == element->getData())
@@ -166,7 +114,7 @@ class Tree
 
 	void display()
 	{
-		Node *tmp_root=getRoot();
+		TreeNode *tmp_root=getRoot();
 		std::cout<<"1) inorder 2) preorder 3) postorder\n";
 	        int choise=0;
 		std::cin>>choise;
@@ -185,7 +133,7 @@ class Tree
 		}
 	};
 
-	void traversal_inorder(Node *tmp_root)
+	void traversal_inorder(TreeNode *tmp_root)
 	{
 		if(tmp_root==NULL)
 			return ;
@@ -196,7 +144,7 @@ class Tree
 			traversal_inorder(tmp_root->getRightPtr());
 		}
 	};
-	void traversal_preorder(Node *tmp_root)
+	void traversal_preorder(TreeNode *tmp_root)
 	{
 		if(tmp_root==NULL)
 			return ;
@@ -208,7 +156,7 @@ class Tree
 		}
 	};
 
-	void traversal_postorder(Node *tmp_root)
+	void traversal_postorder(TreeNode *tmp_root)
 	{
 		if(tmp_root==NULL)
 			return ;
