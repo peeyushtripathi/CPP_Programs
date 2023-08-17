@@ -1,46 +1,9 @@
-#include<iostream>
+#include<SingleNode.h>
 using namespace std;
 
-class Node
-{
-	int data;
-	struct Node *next;
-
-	public:
-	Node()
-	{
-		data=0;
-		next=NULL;
-	};
-	Node(int data)
-	{
-		this->data=data;
-		this->next=NULL;
-	};
-
-	Node *getnext()
-	{
-		return this->next;
-	};
-	void setnext(Node *node)
-	{
-		this->next=node;
-	};
-	int getdata()
-	{
-		return this->data;
-	};
-	void setdata(int data)
-	{
-		this->data=data;
-	};
-	~Node()
-	{
-	};
-};
 class Linked
 {
-	Node *node;
+	SingleNode *node;
 	public:
 		Linked()
 		{
@@ -59,16 +22,16 @@ void Linked::insert()
 	std::cout<<"enter element";
 	std::cin>>data;
 	
-	Node *element= new Node(data);
+	SingleNode *element= new SingleNode(data);
 	
 	if(this->node==NULL)
 		this->node=element;
 	else
 	{
-		Node *iterator=this->node;;
-		while(iterator->getnext() !=NULL)
-			iterator= iterator->getnext();
-		iterator->setnext(element);
+		SingleNode *iterator=this->node;;
+		while(iterator->getNext() !=NULL)
+			iterator= iterator->getNext();
+		iterator->setNext(element);
 	};
 
 }
@@ -76,37 +39,37 @@ void Linked::insert()
 void Linked::deleted()
 {
 	int data=0;
-	Node *iterator=this->node;
-	Node *previous=this->node;
+	SingleNode *iterator=this->node;
+	SingleNode *previous=this->node;
 	std::cout<<"enter node you want to delete";
 	std::cin>>data;
 
 	if(this->node==NULL)
 		std::cout<<"empty list\n";
 
-	if(iterator->getdata()==data)
+	if(iterator->getData()==data)
 	{
-		this->node=iterator->getnext();
+		this->node=iterator->getNext();
 	}
 	else
 	{
-		while(iterator->getnext() !=NULL && iterator->getdata() !=data)
+		while(iterator->getNext() !=NULL && iterator->getData() !=data)
 		{
 			previous=iterator;
-			iterator= iterator->getnext();
+			iterator= iterator->getNext();
 		}
-		if(iterator->getdata() ==data)
+		if(iterator->getData() ==data)
 		{
 			//if last element matches
-			if(iterator->getnext() ==NULL)
+			if(iterator->getNext() ==NULL)
 			{
-				delete previous->getnext();
-				previous->setnext(NULL);
+				delete previous->getNext();
+				previous->setNext(NULL);
 			}
 			//for intermediate
-			else if(iterator->getnext() !=NULL)
+			else if(iterator->getNext() !=NULL)
 			{
-				previous->setnext(iterator->getnext());
+				previous->setNext(iterator->getNext());
 				delete iterator;
 			}
 		}
@@ -121,12 +84,12 @@ void Linked::deleted()
 
 void Linked::display()
 {
-	Node *iterator =this->node;
+	SingleNode *iterator =this->node;
 	while(iterator!=NULL)
 	{
-		std::cout<<"==>"<<iterator->getdata();
-		if(iterator->getnext()!=NULL)
-			iterator =iterator ->getnext();
+		std::cout<<"==>"<<iterator->getData();
+		if(iterator->getNext()!=NULL)
+			iterator =iterator ->getNext();
 		else
 			break;
 	}

@@ -1,47 +1,12 @@
-#include<iostream>
+#include<SingleNode.h>
 
 using namespace std;
 
-class Node
-{
-	int data;
-	Node *next;
-
-	public:
-	Node()
-	{
-		data=0;
-		next=NULL;
-	};
-	~Node()
-	{
-	};
-	int getData()
-	{
-		return data;
-	};
-
-	void setData(int data)
-	{
-		this->data=data;
-	};
-	Node* getNext()
-	{
-		return next;
-	};
-
-	void setNext(Node* next)
-	{
-		this->next=next;
-	};
-
-
-};
 
 class Queue
 {
-	Node *front;
-	Node *rear;
+	SingleNode *front;
+	SingleNode *rear;
 
 	public:
 	Queue()
@@ -63,7 +28,7 @@ class Queue
 
 void Queue::enqueue()
 	{
-		Node *element =new Node();
+		SingleNode *element =new SingleNode();
 		std::cout<<"enter element";
 		int data;
 		std::cin>>data;
@@ -99,7 +64,7 @@ void Queue::dequeue()
 		}
 		else 
 		{
-			Node *tmp_front=front;
+			SingleNode *tmp_front=front;
 			std::cout<<"deleted element is"<<tmp_front->getData();
 			front=front->getNext();
 			delete tmp_front;	
@@ -110,7 +75,7 @@ void Queue::dequeue()
 void Queue::display()
 	{
 		std::cout<<"elements in queue are";
-		Node *tmp_front=front;
+		SingleNode *tmp_front=front;
 		while(tmp_front!=rear)
 		{
 			std::cout<<tmp_front->getData()<<" ";
